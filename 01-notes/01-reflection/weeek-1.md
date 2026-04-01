@@ -5,7 +5,7 @@
 ![My Outreachy learning journey – from OCR to RAG](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/week1-journey.png)
 
 
-*From confusion to clarity — one step at a time.*
+*From confusion to clarity — one step at a time.* (source: Image generated using AI for illustrative purposes.)
 
 ## Overview  
 

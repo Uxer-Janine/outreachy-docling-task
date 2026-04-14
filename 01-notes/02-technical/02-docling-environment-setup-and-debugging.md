@@ -8,7 +8,7 @@ I’m writing this as honestly as possible, because a lot of the learning came f
 
 ## Getting Started
 
-![Fedora Account Setup](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/00-fedora-account-setup.png)
+![Fedora Account Setup](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/00-fedora-account-setup.png)
 
 The first step was setting up my Fedora account and signing the contributor agreement.
 
@@ -20,10 +20,10 @@ That whole experience was frustrating, but it also reminded me that even the sim
 
 ---
 
-## Realising My Environment Was Messy
+## Realizing My Environment Was Messy
 
 
-![Python Paths](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/01-python-paths-and-runtimes.png)
+![Python Paths](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/01-python-paths-and-runtimes.png)
 
 After getting through the initial setup, I was ready to start running things — or so I thought.
 
@@ -41,7 +41,7 @@ That moment was important for me, because it shifted my thinking from “this co
 
 ## Starting Over (Properly This Time)
 
-![Clean Venv](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/02-clean-venv-python-3.14.png)
+![Clean Venv](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/02-clean-venv-python-3.14.png)
 
 Once I realized the issue might be coming from my environment, trying to fix things piece by piece didn’t make sense anymore.
 
@@ -55,7 +55,7 @@ Looking back, this was one of the turning points. Instead of forcing things to w
 
 ## Installing Docling
 
-![Docling Install](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/03-docling-install-success.png)
+![Docling Install](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/03-docling-install-success.png)
 
 After setting up a clean environment, installing Docling went much smoother than before.
 
@@ -65,7 +65,7 @@ This time, there were no strange errors or unexpected behavior. Everything insta
 
 ## Checking If It Actually Works
 
-![Docling CLI](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/04-docling-cli-available.png)
+![Docling CLI](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/04-docling-cli-available.png)
 
 I didn’t want to assume that installation meant everything was working.
 
@@ -77,7 +77,7 @@ Seeing the `docling` commands show up in the terminal was reassuring. It meant I
 
 ## Fixing What Broke Earlier (PyTorch)
 
-![Torch](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/05-torch-install-verification.png)
+![Torch](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/05-torch-install-verification.png)
 
 Earlier on, PyTorch had caused issues for me — especially with DLL errors — and that contributed to the confusion I was already feeling.
 
@@ -91,7 +91,7 @@ It might seem like a small step, but for me it was confirmation that the reset h
 
 ## Double-Checking Everything
 
-![Docling Version](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/06-docling-install-verification.png)
+![Docling Version](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/06-docling-install-verification.png)
 
 Before moving forward, I wanted to be sure everything was in place.
 
@@ -103,7 +103,7 @@ It wasn’t the most exciting step, but it helped me trust my setup before going
 
 ## Running Things From the Right Place
 
-![Project Navigation](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/07-project-navigation-and-env-setup.png)
+![Project Navigation](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/07-project-navigation-and-env-setup.png)
 
 I also made sure I was working from the correct project directory.
 
@@ -115,7 +115,7 @@ At this point, I was being more intentional with every step, just to avoid going
 
 ## Following Tooling Hints
 
-![hf_xet](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/08-hf-xet-install-success.png)
+![hf_xet](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/08-hf-xet-install-success.png)
 
 At some point during setup, I came across a warning related to Hugging Face downloads.
 
@@ -127,7 +127,7 @@ It worked, and it made me realize that tools often tell you exactly what they ne
 
 ## Making Sure OCR Is Ready
 
-![Tesseract](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/09-tesseract-install-verification.png)
+![Tesseract](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/09-tesseract-install-verification.png)
 
 Since the project involves scanned documents, OCR is a key part of the pipeline.
 
@@ -139,9 +139,9 @@ At this point, it felt like all the pieces were finally coming together.
 
 ## The Point Where Things Broke
 
-![Error](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/10-docling-winerror1314.png)
+![Error](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/10-winerror1314-traceback.png)
 
-Then I ran Docling.
+Then I ran the Docling OCR command..
 
 And this is where I hit a real blocker.
 

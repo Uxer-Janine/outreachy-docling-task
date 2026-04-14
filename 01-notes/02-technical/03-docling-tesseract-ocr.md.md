@@ -20,7 +20,7 @@ The goal of this step was to:
 
 ## Initial Error (CLI Syntax Issue)
 
-![CLI Error](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/19-docling-invalid-option-error.png)
+![CLI Error](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/19-docling-invalid-option-error.png)
 
 While attempting to run the command, I encountered a CLI error caused by incorrect flag formatting.
 
@@ -60,7 +60,7 @@ This confirmed that:
 
 ## Output Preview
 
-![Output Preview](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/21-french-output-preview.png)
+![Output Preview](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/21-french-output-preview.png)
 
 To verify the output, I previewed the generated Markdown file.
 
@@ -76,7 +76,7 @@ At this stage, it was clear that OCR had successfully processed the French docum
 
 ## Output File (Saved)
 
-![Output Folder](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/22-french-output-in-folder.png)
+![Output Folder](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/22-french-output-in-folder.png)
 
 The generated file was confirmed inside the `03-outputs/` directory.
 
@@ -90,7 +90,7 @@ This ensured that:
 
 ## Full Workflow Overview
 
-![Full Workflow](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/23-french-docling-full-workflow.png)
+![Full Workflow](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/23-french-docling-full-workflow.png)
 
 This captures the full pipeline:
 

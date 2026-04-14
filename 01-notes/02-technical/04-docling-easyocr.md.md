@@ -33,7 +33,7 @@ To enable EasyOCR within Docling, I installed the required dependencies in my vi
 python -m pip install "docling[easyocr]"
 python -m pip show easyocr
 ```
-![Docling EasyOCR Installation](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/26-docling-easyocr-installation.png)
+![Docling EasyOCR Installation](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/26-docling-easyocr-installation.png)
 
 The verification output confirmed that EasyOCR was installed correctly in the project environment.
 
@@ -44,45 +44,45 @@ At this point, the pipeline was ready to use EasyOCR as an OCR backend.
 I then ran the same document as before, this time using EasyOCR:
 
 ```bash
-./venv/Scripts/docling.exe 02-source-docs/Swahili-words-and-phrases-for-travelers.pdf --to md --ocr-engine easyocr --ocr-lang sw
+./venv/Scripts/docling.exe 02-scanned-source-docs/Swahili-words-and-phrases-for-travelers.pdf ...
 ```
-![EasyOCR Run](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/25-easyocr-run-and-model-download.png)
+![EasyOCR Run](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/25-easyocr-run-and-model-download.png)
 
 ### What Happened
 
 During the first run, EasyOCR downloaded its required models:
 
-detection model
-recognition model
+- detection model
+- recognition model
 
 **The logs showed:**
 
-"Downloading detection model, please wait..."
-"Downloading recognition model, please wait..."
+- "Downloading detection model, please wait..."
+- "Downloading recognition model, please wait..."
 
 **This confirmed that:**
 
-EasyOCR was correctly integrated
-the pipeline successfully switched OCR engines
-the system was preparing its deep learning models
+- EasyOCR was correctly integrated
+- The pipeline successfully switched OCR engines
+- The system was preparing its deep learning models
 
 ## Key Observations
-### **1. First Run Takes Longer**
+### 1. First Run Takes Longer
 
 Unlike Tesseract, EasyOCR requires model downloads during the first run.
 
 **This means:**
 
-the first execution is slower
-subsequent runs will be faster
+- The first execution is slower
+- Subsequent runs will be faster
 
 ### 2. Same Pipeline, Different Engine
 
 One of the most interesting parts of this step was that nothing else changed.
 
-same document
-same command structure
-same output format
+- same document
+- same command structure
+- same output format
 
 Only this changed:
 
@@ -117,9 +117,9 @@ That’s where things start to get interesting.
 
 ## The next step is to:
 
-compare EasyOCR vs Tesseract outputs
-analyze structure, noise, and readability
-determine which pipeline performs better
+1. Compare EasyOCR vs Tesseract outputs
+2. Analyze structure, noise, and readability
+3. Determine which pipeline performs better
 
 ## Final Thought
 

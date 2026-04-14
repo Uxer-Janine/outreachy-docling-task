@@ -1,31 +1,31 @@
 
 
-# Docling WinError 1314 Deep Dive
+# Resolving Docling WinError 1314 on Windows (Symlink Permission Issue)
 
-In my previous technical markdown, I recounted how I had successfully set up my environment, installed Docling and its dependencies, and verified that everything was working correctly.
+After successfully setting up my environment and installing Docling with its dependencies, I ran my first real OCR task on a scanned document.
 
-Confident that the setup was complete, I ran my first real document through the pipeline.
-
-That is when I hit my first major blocker.
+This is when I encountered my first major blocker.
 
 ---
 
 ## The Command
 
-I ran the following command to convert a scanned Swahili PDF into Markdown using Tesseract OCR:
+I ran the following command from the project root directory to convert a scanned Swahili PDF into Markdown using Tesseract OCR:
 
-``` ./venv/Scripts/docling.exe source-docs/Swahili-words-and-phrases-for-travelers.pdf --to md --ocr-engine tesseract --ocr-lang swa ```
+```bash
+./venv/Scripts/docling.exe 02-scanned-source-docs/Swahili-words-and-phrases-for-travelers.pdf --to md --ocr-engine tesseract --ocr-lang swa
+```
+This command:
 
-The goal was to:
-- take a scanned Swahili PDF
-- apply OCR using Tesseract
-- convert it into Markdown
+Takes a scanned Swahili PDF
+Applies OCR using Tesseract
+Converts the document into Markdown format
 
 ---
 
 ## The Error
 
-![WinError 1314](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/10-winerror1314-traceback.png)
+![WinError 1314](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/10-winerror1314-traceback.png)
 
 *Docling failed during execution with `WinError 1314`, followed by a temporary file access error.*
 
@@ -77,7 +77,7 @@ Once I understood that the issue was related to Windows permissions, I moved awa
 
 ### Step 1: Open Windows Settings
 
-![Settings Home](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/11-settings-home.png)
+![Settings Home](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/11-settings-home.png)
 
 *Opening Windows Settings to begin investigating the permission issue.*
 
@@ -85,7 +85,7 @@ Once I understood that the issue was related to Windows permissions, I moved awa
 
 ### Step 2: Navigate to System settings
 
-![System Advanced](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/12-system-advanced.png)
+![System Advanced](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/12-system-advanced.png)
 
 *Moving through system settings to find the developer-related options.*
 
@@ -93,7 +93,7 @@ Once I understood that the issue was related to Windows permissions, I moved awa
 
 ### Step 3: Check whether Developer Mode is enabled
 
-![Developer Mode Off](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/13-developer-mode-off.png)
+![Developer Mode Off](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/13-developer-mode-off.png)
 
 *Developer Mode was turned off, which explained why Windows blocked symlink creation.*
 
@@ -107,7 +107,7 @@ The fix was to enable **Developer Mode** in Windows.
 
 ### Step 4: Confirm enabling Developer Mode
 
-![Developer Mode Confirmation](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/14-developer-mode-confirmation.png)
+![Developer Mode Confirmation](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/14-developer-mode-confirmation.png)
 
 *Windows confirmation prompt shown before enabling Developer Mode.*
 
@@ -115,7 +115,7 @@ The fix was to enable **Developer Mode** in Windows.
 
 ### Step 5: Turn Developer Mode on
 
-![Developer Mode On](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/15-developer-mode-on.png)
+![Developer Mode On](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/15-developer-mode-on.png)
 
 *Developer Mode successfully enabled.*
 
@@ -129,7 +129,7 @@ That was the main fix for the `WinError 1314` issue.
 
 After enabling Developer Mode, I returned to the project directory and ran the same Docling command again.
 
-![Docling Success](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/16-docling-success.png)
+![Docling Success](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/16-docling-success.png)
 
 *Re-running the Docling OCR command after enabling Developer Mode.*
 
@@ -144,17 +144,17 @@ That confirmed that:
 
 ## Output File
 
-After the command completed successfully, the generated Markdown file was moved into the `outputs/` folder.
+After the command completed successfully, the generated Markdown file was moved into the `03-outputs/` folder.
 
-![Output File](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/18-output-file-in-outputs-folder.png)
+![Output File](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/18-output-file-in-outputs-folder.png)
 
-*Generated Markdown file successfully saved in the `outputs/` folder.*
+*Generated Markdown file successfully saved in the `03-outputs/` folder.*
 
 ---
 
 ## Output Preview
 
-![Output Preview](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/17-output-preview.png)
+![Output Preview](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/windows-screenshots/17-output-preview.png)
 
 *Preview of the generated Markdown output after the permission issue was resolved.*
 

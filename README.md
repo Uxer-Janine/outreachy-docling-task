@@ -1,4 +1,28 @@
-[toc]
+## Table of Contents
+
+- [Document Processing \& Semantic Retrieval with Docling](#document-processing--semantic-retrieval-with-docling)
+  - [Overview](#overview)
+  - [What is Docling?](#what-is-docling)
+  - [OCR Engines Used](#ocr-engines-used)
+    - [Why These OCR Engines?](#why-these-ocr-engines)
+    - [Evaluation Criteria (Key Metrics)](#evaluation-criteria-key-metrics)
+  - [Project Structure](#project-structure)
+    - [Project Structure (Overview)](#project-structure-overview)
+  - [Setup](#setup)
+  - [Challenges \& Debugging](#challenges--debugging)
+  - [OCR Processing](#ocr-processing)
+  - [Data Analysis Insights](#data-analysis-insights)
+  - [OCR Engine Comparison](#ocr-engine-comparison)
+  - [Supported Language Codes](#supported-language-codes)
+    - [Tesseract / RapidOCR](#tesseract--rapidocr)
+    - [EasyOCR](#easyocr)
+  - [Semantic Retrieval](#semantic-retrieval)
+  - [Notebooks](#notebooks)
+  - [Key Findings](#key-findings)
+  - [Presentation](#presentation)
+  - [Dev Notes](#dev-notes)
+  - [Conclusion](#conclusion)
+  - [AI Assistance Disclosure](#ai-assistance-disclosure)
 
 # Document Processing & Semantic Retrieval with Docling
 

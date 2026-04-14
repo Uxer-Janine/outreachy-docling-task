@@ -1,8 +1,8 @@
 # Week 1 – Outreachy (Fedora Docling Project)
-**Period:** 21/03/2026 – 30/03/2026  
+**Period:** 21 Mar 2026 – 30 Mar 2026  
 
 ---
-![My Outreachy learning journey – from OCR to RAG](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/week1-journey.png)
+![My Outreachy learning journey – from OCR to RAG](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/06-week1-journey.png)
 
 
 *From confusion to clarity — one step at a time.* (source: Image generated using AI for illustrative purposes.)
@@ -31,7 +31,7 @@ At the same time, I felt a lot of uncertainty. Many of the tools and concepts we
 
 ## What I Learned  
 
-- RAG is basically about retrieving the right information first, then generating answers from it  
+- RAG is about retrieving the right information first, then generating answers from it  
 - OCR allows computers to read text from images or scanned documents  
 - Docling helps turn messy documents into something structured and usable for AI  
 - You don’t need to understand everything at once — things start to click as you go  
@@ -73,7 +73,7 @@ Everything felt unfamiliar, and I wasn’t sure I could keep up. But taking a st
 
 One thing that really stood out this week is how supportive the Fedora community is. Knowing that there are people you can ask for help makes it much easier to keep going.
 
-Also, I’m starting to understand that progress here isn’t about knowing everything, it’s about **showing up, trying, and learning in public**.
+Also, I’m starting to understand that progress here isn’t about knowing everything; it’s about **showing up, trying, and learning in public**.
 
 ---
 
@@ -96,6 +96,6 @@ Also, I’m starting to understand that progress here isn’t about knowing ever
 
 ## Closing Thought  
 
-This week wasn’t about getting everything right, rather it was about getting started.
+This week wasn’t about getting everything right; rather, it was about getting started.
 
 And for now, that feels like a solid win.

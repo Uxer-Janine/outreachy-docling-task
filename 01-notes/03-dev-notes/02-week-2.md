@@ -90,7 +90,7 @@ There is still a lot to learn, but it no longer feels intimidating.
 
 ## Final Thoughts
 
-This week was less about just building things and more about learning how to work effectively.
+This week was less about building things and more about learning how to work effectively.
 
 - how to communicate  
 - how to document  
@@ -98,6 +98,7 @@ This week was less about just building things and more about learning how to wor
 - and how to stay consistent  
 
 More than anything, I am starting to see open source as a space I can grow in, not one I need to prove myself worthy of.
+
 ---
 
 ## What’s Next
@@ -106,13 +107,13 @@ With Week 2 complete, the focus now shifts to building on this progress and pres
 
 The next steps include:
 
-- Continue working on the second task
-- Start building a portfolio to showcase the work  
-- Refine the main README to clearly tell the project story  
-- Begin preparing a final presentation of the work done  
-- Continue contributing publicly and documenting progress consistently  
-- Complete the Outreachy final application essays  
-- Actively seek and incorporate feedback  
-- Initiate peer reviews and discussions in public channels  
+- continue working on the second task
+- start building a portfolio to showcase the work  
+- refine the main README to clearly tell the project story  
+- begin preparing a final presentation of the work done  
+- continue contributing publicly and documenting progress consistently  
+- complete the Outreachy final application essays  
+- actively seek and incorporate feedback  
+- initiate peer reviews and discussions in public channels  
 
 The goal moving forward is not just to build, but to communicate the work clearly and collaboratively.

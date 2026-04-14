@@ -13,14 +13,15 @@ Here are the key lessons and moments that stood out.
 
 At the start of the week, I was in a bit of an in-between space.
 
-I had already been assigned and was working on **Phase 2 (Issue #122)**, but I was still waiting to be assigned something specific for **Phase 2A (fixing Ramalama documentation)**.
+I had already been assigned and was working on **Phase 2 (Issue #123)**, but I was still waiting to be assigned something specific for **Phase 2A (fixing Ramalama documentation)**.
 
 At first, this felt like a pause.
 
 But then I remembered something important:
 
-Open source is not about waiting to be told what to do.
+Open source is not about waiting to be told what to do.  
 It is about building on what already exists.
+
 
 So instead of waiting, I:
 
@@ -113,15 +114,15 @@ It reinforced that collaboration is not something that happens after feedback �
 
 This phase made one thing very clear:
 
-The goal is not to have the “best idea.”
+The goal is not to have the “best idea.”  
 The goal is to help the team move toward a shared standard.
 
 I focused on:
 
-* contributing ideas clearly
-* building on existing proposals
-* responding to others’ suggestions
-* leaving visible, traceable input
+- contributing ideas clearly
+- building on existing proposals
+- responding to others’ suggestions
+- leaving visible, traceable input
 
 This made my contributions more aligned and more useful to the group.
 
@@ -165,7 +166,7 @@ Earlier in the process, I focused on the more challenging parts of the project.
 
 At the time, it felt difficult.
 
-But now, it is what has allowed me to:
+But now, that is what has allowed me to:
 
 * iterate on my work
 * improve based on feedback

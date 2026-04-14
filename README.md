@@ -269,7 +269,7 @@ A query like *“How do I greet someone in Swahili?”* returns the most relevan
 
 ## Notebooks
 - [OCR Output Analysis](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/01-docling-ocr-output-analysis.ipynb)
-- [OCR Engine Comparison](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/03-ocr-engine-comparison.ipynb)  
+- [OCR Engine Comparison](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb.ipynb)  
 - [Semantic Retrieval Pipeline](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb)  
 
 ---
@@ -302,8 +302,8 @@ All three OCR engines produced usable outputs from the same document, but with n
 
 - [windows symlink error and fix](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/01-windows-symlink-error-and-fix.md)
 - [Docling environment and setup](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/02-docling-environment-setup-and-debugging.md)
-- [Docling tesseract-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/03-docling-tesseract-ocr.md)
-- [Docling easy-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/04-docling-easyocr.md)
+- [Docling tesseract-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/03-docling-tesseract-ocr.md.md)
+- [Docling easy-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/04-docling-easyocr.md.md)
 - [Docling rapid-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/05-docling-rapidocr.md)
   
 

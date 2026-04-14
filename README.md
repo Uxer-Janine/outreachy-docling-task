@@ -1,315 +1,309 @@
+[toc]
 
 # Document Processing & Semantic Retrieval with Docling
 
-This project started with a simple question:
+This project demonstrates how scanned documents can be transformed into structured, AI-ready data using OCR and then used for semantic retrieval.
 
-How do you turn a messy document into something an AI system can actually understand?
-
-What followed was a process of testing, breaking things, fixing them, and gradually building a pipeline that goes from raw PDFs to semantic retrieval.
-
----
-
-##  Where It Started
-
-The goal was straightforward:
-
-- take a PDF  
-- extract the text using OCR  
-- convert it into something structured  
-- and eventually make it searchable  
-
-To do this, I used **Docling** as the core tool, with different OCR engines behind it.
+Pipeline:
+Raw PDF → OCR → Markdown → Analysis → Retrieval 
 
 ---
 
-##  Setting Up the Environment
+## Overview
 
-I started by setting up a clean environment to avoid dependency issues later on.
+The objective is to:
+- extract text from scanned documents  
+- evaluate OCR quality across multiple engines  
+- analyze structure and noise  
+- test usability in a semantic retrieval (RAG-style) pipeline  
+
+---
+
+## What is Docling?
+
+Docling is an open-source document processing tool that converts complex documents into structured formats such as Markdown or JSON, enabling downstream AI workflows.
+
+<img src="https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/04-Docling%20explained.png" width="600"/>
+
+---
+
+## OCR Engines Used
+
+### Why These OCR Engines?
+
+Three OCR engines were selected to represent different approaches to text extraction and to enable a meaningful comparison:
+
+- **Tesseract** → a widely-used, traditional OCR engine known for reliability and strong structure preservation. It performs well on structured documents and produces consistent, clean layouts.
+
+- **EasyOCR** → a deep learning-based engine designed for flexibility and multilingual support. It handles varied and complex text better, but may introduce formatting inconsistencies.
+
+- **RapidOCR** → an ONNX-based pipeline optimized for speed and efficiency. It is lightweight, fast, and easy to run, making it suitable for scalable workflows.
+
+Each engine offers a different balance of:
+- speed  
+- accuracy  
+- formatting consistency  
+___
+
+### Evaluation Criteria (Key Metrics)
+
+Using all three makes it possible to evaluate not just which extracts text, but which produces the most usable output for downstream AI tasks.
+
+It allows comparison of:
+- extraction accuracy  
+- structure preservation  
+- noise levels  
+- suitability for downstream tasks like semantic retrieval   
+
+---
+
+## Project Structure
+
+```
+outreachy-docling-task/
+├── 01-notes/
+├── 02-scanned-source-docs/
+├── 03-outputs/
+│   ├── tesseract_outputs/
+│   ├── easyocr_outputs/
+│   ├── rapidocr_outputs/
+├── 04-notebooks/
+├── 05-screenshots/
+├── 06-images/
+├── 07-presentation/
+├── README.md
+```
+
+### Project Structure (Overview)
+
+
+The project is organized to reflect the full pipeline:
+
+- **01-notes/** → technical and non-technical reflections
+- **02-scanned-source-docs/** → raw input PDFs   
+- **03-outputs/** → OCR results grouped by engine  
+- **04-notebooks/** → analysis, comparison, and retrieval workflows  
+- **05-screenshots/** → setup, debugging, and execution evidence  
+- **06-images/** → visual outputs (plots and diagrams) 
+- **07-presentation/** → Non-technical Presentation
+
+This structure follows a clear flow:
+**raw data → OCR → analysis → retrieval**
+
+---
+
+## Setup
+
+A clean virtual environment was created to ensure consistent dependency management and avoid conflicts between different OCR engines.
 
 ```bash
 python -m venv venv
 source venv/Scripts/activate
-python -m pip install --upgrade pip
 pip install "docling[tesseract]"
-````
+pip install "docling[easyocr]"
+pip install rapidocr onnxruntime
+```
 
-At this point, everything looked fine. The setup was complete, and I was ready to run my first document.
+This setup installs Docling along with the required OCR engines and their dependencies:
 
----
+- Tesseract support via docling[tesseract]
+- EasyOCR integration via docling[easyocr]
+- RapidOCR + ONNX runtime for fast inference
 
-## Working in the Terminal
-
-Most of this project was executed directly in the terminal, from running OCR pipelines to managing files and outputs.
-
-![CLI Workflow](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/23-french-docling-full-workflow.png)
-
-This workflow includes:
-
-* navigating project directories
-* running Docling commands
-* processing multiple documents
-* managing outputs
-
-Working in the terminal made it easier to debug issues, rerun commands quickly, and stay aligned with real-world development workflows.
+This prepares a controlled environment for running OCR pipelines, testing multiple engines, and ensuring reproducible results across the project.
 
 ---
 
-##  Running the First Document (Tesseract)
+## Challenges & Debugging
 
-I began with a Swahili document and ran it through Docling using Tesseract:
+During setup and execution, several issues surfaced that affected the OCR pipeline.
+
+- **Windows permissions (WinError 1314)**  
+  Symlink creation was blocked during model downloads.  
+  This was resolved by enabling Developer Mode.
+
+- **DLL errors with PyTorch**  
+  Conflicts from multiple Python installations (Anaconda vs venv) caused runtime failures.  
+  This was fixed by rebuilding the environment using a clean virtual environment.
+
+- **Multiple Python environments**  
+  Inconsistent behavior across commands revealed overlapping Python installations.  
+  Standardizing on a single environment resolved the issue.
+
+- **OCR model setup delays**  
+  EasyOCR required downloading models on first run, increasing execution time.
+
+These challenges highlighted that environment configuration is a critical part of building reliable OCR pipelines, not just an initial setup step.
+
+---
+
+## OCR Processing
+
+Example (Tesseract):
 
 ```bash
-./venv/Scripts/docling.exe 02-source-docs/Swahili-words-and-phrases-for-travelers.pdf --to md --ocr-engine tesseract --ocr-lang swa
+./venv/Scripts/docling.exe 02-scanned-source-docs/Swahili-words-and-phrases-for-travelers.pdf --to md --ocr-engine tesseract --ocr-lang swa
 ```
 
-This is where things got interesting.
+The same document was processed using:
+
+- Tesseract
+- EasyOCR
+- RapidOCR
+
+Each run used the same input but a different OCR engine.
+
+The outputs were stored separately and used for comparison and analysis in later stages. 
 
 ---
 
-## The First Blocker
+## Data Analysis Insights
 
-Instead of getting output immediately, I ran into an error:
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/01-word-count-comparison.png" width="30%"/>
+  <img src="https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/02-swahili-line-length.png" width="30%"/>
+  <img src="https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/03-french-line-length.png" width="30%"/>
+</p>
 
-```
-OSError: A required privilege is not held by the client
-```
+These visualizations highlight how document structure influences OCR output.
 
-At first, it looked like something had gone wrong with the setup. But after reading the error more carefully, it turned out to be a Windows permissions issue.
-
----
-
-### Fixing It
-
-The problem was that Windows was blocking symlink creation.
-
-The fix was simple:
-
-Enable Developer Mode.
-
-```
-Settings → System → For Developers → Developer Mode (ON)
-```
-
-![Developer Mode Enabled](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/15-developer-mode-on.png)
-
-Once I made that change, the same command worked.
-
-That moment was important because it showed me that not every error means the whole setup is broken. Sometimes the issue is outside the code.
+**Insights:**
+- Similar word counts ≠ similar quality  
+- Structured documents produce shorter, segmented lines  
+- Paragraph-based documents produce longer, continuous lines  
+- OCR noise varies depending on layout and engine behavior  
 
 ---
 
-##  First Successful Output
+## OCR Engine Comparison
 
-After fixing the issue, the document was successfully converted into Markdown.
-
-![OCR Output Preview](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/17-output-preview.png)
-
-The output was readable and structured, but not perfect.
-
-* some sections were clean
-* others had noise or formatting issues
-
-This raised the next question:
-
-Is this good enough, or can it be improved?
+| Feature                | Tesseract               | EasyOCR                    | RapidOCR              |
+| ---------------------- | ----------------------- | -------------------------- | --------------------- |
+| Engine Type            | Traditional OCR         | Deep learning-based        | ONNX-based            |
+| Speed                  | Fast                    | Slower (first run)         | Fast                  |
+| Accuracy               | Good                    | Good (slightly variable)   | Good                  |
+| Structure Preservation | Strong                  | Moderate                   | Good                  |
+| Formatting Consistency | High                    | Lower                      | Moderate              |
+| Noise Level            | Low                     | Slightly higher            | Moderate              |
+| Setup Complexity       | Medium (language packs) | Easy but model download    | Simple + ONNX runtime |
+| Best Use Case          | Structured documents    | Flexible multilingual text | Efficient pipelines   |
 
 ---
 
-##  Testing a Second OCR Engine (EasyOCR)
+## Supported Language Codes
 
-To answer that, I decided to try a different OCR engine: EasyOCR.
+<table align="center">
+<tr>
+<td align="center" width="50%">
 
-First, I installed the required dependencies:
+### Tesseract / RapidOCR
 
-```bash
-python -m pip install "docling[easyocr]"
-```
+| Language | Code |
+|----------|------|
+| English  | eng  |
+| French   | fra  |
+| Swahili  | swa  |
+| Arabic   | ara  |
 
-Then I ran the same document again, this time switching the OCR engine:
+</td>
 
-```bash
-./venv/Scripts/docling.exe 02-source-docs/Swahili-words-and-phrases-for-travelers.pdf --to md --ocr-engine easyocr --ocr-lang sw
-```
+<td align="center" width="50%">
 
-![EasyOCR Run](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/25-easyocr-run-and-model-download.png)
+### EasyOCR
 
----
+| Language | Code |
+|----------|------|
+| English  | en   |
+| French   | fr   |
+| Swahili  | sw   |
+| Arabic   | ar   |
 
-### What Changed
-
-The pipeline itself didn’t change.
-
-* same document
-* same command structure
-* same output format
-
-But EasyOCR behaved differently.
-
-* it downloaded models on first run
-* it took slightly longer
-* and the output formatting was not exactly the same
+</td>
+</tr>
+</table>
 
 ---
 
-##  Comparing the Outputs
+## Semantic Retrieval
 
-With both pipelines working, I compared the results.
+OCR outputs were converted into embeddings using SentenceTransformers, enabling meaning-based search instead of keyword matching.
 
-### What stood out:
+**Process**
+- clean text  
+- split into chunks  
+- generate embeddings  
+- retrieve relevant chunks using similarity  
 
-* Both extracted roughly the same amount of text
-* Both struggled with certain sections (especially image-based content)
-* Tesseract produced cleaner structure
-* EasyOCR occasionally picked up words Tesseract missed
+**What This Enables**
+- semantic search  
+- RAG-style workflows  
 
----
+**Example:**  
+A query like *“How do I greet someone in Swahili?”* returns the most relevant phrases from the document.
 
-## What the Data Shows
+--- 
 
-To move beyond observation, I visualized some of the differences between the outputs.
-
----
-
-### Word Count Comparison
-
-![Word Count Comparison](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/01-word-count-comparison.png)
-
-Both engines produced nearly identical word counts, which suggests they extracted a similar amount of content.
-
-However, similar quantity does not necessarily mean similar quality.
+## Notebooks
+- [OCR Output Analysis](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/01-docling-ocr-output-analysis.ipynb)
+- [OCR Engine Comparison](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/03-ocr-engine-comparison.ipynb)  
+- [Semantic Retrieval Pipeline](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb)  
 
 ---
 
-### Line Length Distribution
+## Key Findings
 
-![Swahili Line Length](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/02-swahili-line-length.png)
+All three OCR engines produced usable outputs from the same document, but with noticeable differences in quality and consistency.
 
-This shows how text is structured across the document.
+- **Tesseract** delivered the most stable and well-structured output, making it easier to work with in downstream tasks  
+- **EasyOCR** showed flexibility and strong text recognition, but introduced more formatting noise  
+- **RapidOCR** provided a strong balance between speed and output quality, making it efficient for practical workflows  
 
-* shorter lines → structured content
-* longer lines → paragraph-style text
+**Most importantly:**
 
----
-
-### What This Confirms
-
-The visualizations reinforce a few key points:
-
-* Similar volume of text does not guarantee similar quality
-* Structure and formatting matter just as much as extraction
-* OCR performance depends on the nature of the document
+- The quality of OCR output directly affects downstream AI performance.  
+- Cleaner, well-structured text leads to better results in tasks like chunking, embedding generation, and semantic retrieval.
 
 ---
 
-##  Summary
+## Presentation
 
-| Feature    | Tesseract | EasyOCR                              |
-| ---------- | --------- | ------------------------------------ |
-| Formatting | Better    | Less consistent                      |
-| Accuracy   | Good      | Good (slightly better in some cases) |
-| Speed      | Faster    | Slower initially                     |
-| Setup      | Simple    | Requires model download              |
+* [Download Presentation (PDF)](./07-presentation/docling-project-presentation.pdf)
+* [Download Presentation (PPTX)](./07-presentation/docling-project-presentation.pptx)
 
 ---
 
-### Decision
+## Dev Notes
 
-For this project, I continued with **Tesseract** because it produced more consistent structured output.
+**Technical Reflections:**
 
----
+- [windows symlink error and fix](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/01-windows-symlink-error-and-fix.md)
+- [Docling environment and setup](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/02-docling-environment-setup-and-debugging.md)
+- [Docling tesseract-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/03-docling-tesseract-ocr.md)
+- [Docling easy-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/04-docling-easyocr.md)
+- [Docling rapid-ocr](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/05-docling-rapidocr.md)
+  
 
-## Moving Beyond Extraction
+**Non-Technical Reflections:**
 
-At this point, I had clean Markdown files.
-
-But I wanted to go further.
-
-Instead of just extracting text, I asked:
-
-Can this actually be used in an AI system?
-
----
-
-##  Building a Retrieval Pipeline
-
-To test that, I built a semantic retrieval pipeline.
-
-The idea was to:
-
-* break the text into chunks
-* generate embeddings
-* retrieve relevant sections based on a query
-
-![Embedding Setup](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/24-install-sentence-transformers.png)
+- [week1-reflection](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/03-dev-notes/01-weeek-1.md)
+- [week2-reflection](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/03-dev-notes/02-week-2.md)
+- [week3-reflection](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/03-dev-notes/03-week-3.md)
 
 ---
 
-### Result
+## Conclusion
 
-The system was able to:
+This project shows that OCR is not just about extracting text, but about producing structured, high-quality data that can be effectively used in downstream AI systems.
 
-- take a question  
-- search through the document  
-- return relevant sections  
-
-#### Swahili Query Example
-
-![Swahili Retrieval](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/27-rag-query-swahili-results.png)
-
-For a query about greetings in Swahili, the system retrieved relevant phrases such as *“Kwaheri”*, *“Good evening”*, and *“Good night”*, along with similarity scores.
+The choice of OCR engine directly impacts the reliability of analysis and retrieval tasks, making evaluation and comparison a critical part of the pipeline.
 
 ---
 
-#### French Query Example
+## AI Assistance Disclosure
 
-![French Retrieval](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/05-screenshots/28-rag-query-french-results.png)
+AI tools were used throughout this project to:
+- help debug environment and setup issues  
+- assist in structuring parts of the code  
+- refine explanations and improve documentation clarity  
 
-For a query about French reading concepts, the system retrieved sections discussing *cognates*, *grammar*, and *word similarities*, again ranked by relevance.
-
----
-
-### What This Shows
-
-- The pipeline is not just storing text  
-- It is able to **understand and retrieve meaning based on a query**  
-- Results are ranked using similarity scores, making retrieval more useful  
-
-This confirms that the output is not just readable, but usable in downstream AI applications such as semantic search.
-
-##  What I Learned
-
-A few things became very clear during this process:
-
-* Environment issues can block progress just as much as code
-* Small CLI mistakes can cause confusion
-* OCR outputs require validation
-* Different tools behave differently on the same input
-* The real value comes after extraction
-
----
-
-##  Final Pipeline
-
-```
-Raw PDF → OCR → Structured Markdown → Analysis → Retrieval
-```
-
-Each step builds on the previous one.
-
----
-
-##  Reflection
-
-![Week 2 Reflection](https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/08-week2-reflection.png)
-
-This week was less about just getting things to work and more about understanding how everything connects.
-
----
-
-## References
-
-* [OCR Output Analysis Notebook](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/01-docling-ocr-output-analysis.ipynb)
-* [OCR Engine Comparison Notebook](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/03-tesseract-vs-easyocr-comparison.ipynb)
-* [Semantic Retrieval Notebook](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb)
-* Technical Notes ([Setup](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/02-docling-environment-setup-and-debugging.md), [Debugging](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/01-windows-symlink-error-and-fix%20(2).md), [EasyOCR](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/01-notes/02-technical/04-easyocr-pipeline.md))
-
+The core ideas, experimentation, and analysis were carried out independently, with AI serving as a supporting tool rather than a substitute for the work itself.

@@ -1,3 +1,5 @@
+```markdown
+
 [toc]
 
 # Document Processing & Semantic Retrieval with Docling
@@ -307,3 +309,4 @@ AI tools were used throughout this project to:
 - refine explanations and improve documentation clarity  
 
 The core ideas, experimentation, and analysis were carried out independently, with AI serving as a supporting tool rather than a substitute for the work itself.
+```

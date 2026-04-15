@@ -268,9 +268,9 @@ A query like *“How do I greet someone in Swahili?”* returns the most relevan
 --- 
 
 ## Notebooks
-- [OCR Output Analysis](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/01-docling-ocr-output-analysis.ipynb)
-- [OCR Engine Comparison](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb)  
-- [Semantic Retrieval Pipeline](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb)  
+- [OCR Output Analysis (NBViewer)](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/01-docling-ocr-output-analysis.ipynb)
+- [OCR Engine Comparison (NBViewer)](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb)  
+- [Semantic Retrieval Pipeline (NBViewer)](https://github.com/Uxer-Janine/outreachy-docling-task/blob/master/04-notebooks/02-rag-semantic-retrieval-pipeline.ipynb)  
 
 ---
 

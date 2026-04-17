@@ -45,13 +45,42 @@ The objective is to:
 
 ## What is Docling?
 
-Docling is an open-source document processing tool that converts complex documents into structured formats such as Markdown or JSON, enabling downstream AI workflows.
+
+Docling is an open-source document processing framework designed to convert complex and unstructured documents (such as scanned PDFs) into structured, machine-readable formats like Markdown or JSON.
+
+It acts as a bridge between raw documents and downstream AI systems by:
+
+- parsing document layouts  
+- extracting text using OCR when needed  
+- preserving structure (headings, lists, tables)  
+- exporting clean, structured outputs  
 
 <img src="https://raw.githubusercontent.com/Uxer-Janine/outreachy-docling-task/master/06-images/04-Docling%20explained.png" width="600"/>
+
+Unlike basic OCR tools that only extract plain text, Docling focuses on **document understanding**, making the output more usable for tasks such as:
+
+- data analysis  
+- knowledge extraction  
+- semantic search and retrieval (RAG pipelines)  
+
+In this project, Docling is used as the core processing engine to standardize outputs from different OCR systems into a consistent format for comparison and downstream use.
 
 ---
 
 ## OCR Engines Used
+
+Optical Character Recognition (OCR) is the process of converting text from images or scanned documents into machine-readable text.
+
+Since the source documents in this project are scanned PDFs (not digitally native text), OCR is a necessary step to extract their contents before any analysis or retrieval can be performed.
+
+However, OCR is not a one-size-fits-all solution. Different engines vary in:
+
+- accuracy of text extraction  
+- ability to preserve document structure  
+- handling of multiple languages  
+- speed and computational efficiency  
+
+To better understand these trade-offs, multiple OCR engines were used and compared within the same processing pipeline.
 
 ### Why These OCR Engines?
 
